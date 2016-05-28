@@ -2,6 +2,7 @@ clear;
 clc;
 
 % define used symbols
+global CIRCLE SHARP EMPTY
 CIRCLE = 1; 
 SHARP = -1;
 EMPTY = 0;
