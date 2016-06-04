@@ -10,7 +10,9 @@ EMPTY = 0;
 % Matrix representing board consists of 5x5 cells.
 % Each cell may be in one of above defined states: CIRCLE,SHAPE or EMPTY
 
-board = zeros(5);
-tmpVector = zeros(1,25);
+% get Test set
+% boards - set of boards, for which we search the best movements.
+% x,y - set of choosen moves for following boards 
+[boards,x,y] = GetSamplesTest(5,20);
 
 net = defineNetwork();

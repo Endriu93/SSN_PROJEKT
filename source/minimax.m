@@ -1,5 +1,5 @@
 function [result,i,j]=minimax(matrix,depth,symbol,count,maxdepth)
-disp(depth)
+%disp(depth)
 i=nan;
 j=nan;
 % http://neverstopbuilding.com/minimax
