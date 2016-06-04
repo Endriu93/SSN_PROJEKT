@@ -1,17 +1,11 @@
-function matrix=bestMovement(matrix,symbol)
+function [matrix,i,j]=bestMovement(matrix,symbol,count,maxdepth)
 % function generates best movement for player represented by current symbol
 
-global CIRCLE SHARP PLAYER OPPONENT NEXT_MOVE
+global PLAYER NEXT_MOVE
 PLAYER = symbol;
-if PLAYER == CIRCLE
-    OPPONENT = SHARP;
-else
-    OPPONENT = CIRCLE;
-end
 
 if (sum(matrix(:) == 0) == 25)
     matrix(3,3) = symbol;
-else
-    minimax(matrix,0,symbol);
-    matrix = NEXT_MOVE;
 end
+    [res,i,j] = minimax(matrix,0,symbol,count,maxdepth);
+    matrix = NEXT_MOVE;

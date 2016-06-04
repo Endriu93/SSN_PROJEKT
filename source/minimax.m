@@ -1,38 +1,87 @@
-function result=minimax(matrix,depth,symbol)
-
+function [result,i,j]=minimax(matrix,depth,symbol,count,maxdepth)
+disp(depth)
+i=nan;
+j=nan;
 % http://neverstopbuilding.com/minimax
 % working for 3x3, but need improvement for 5x5
 global CIRCLE SHARP EMPTY PLAYER OPPONENT NEXT_MOVE
 
-if hasPlayerWon(matrix,PLAYER)
-    result = depth - 100;
-elseif hasPlayerWon(matrix,OPPONENT)
-    result = 100 - depth;
+% first time method is called the player was assigned given symbol
+if depth==0
+    PLAYER = symbol;
+end
+if PLAYER == CIRCLE
+    OPPONENT = SHARP;
+else
+    OPPONENT = CIRCLE;
+end
+
+if hasPlayerWon(matrix,OPPONENT,count)
+    result = depth - 100 - 20*count;
+elseif hasPlayerWon(matrix,PLAYER,count)
+    result = 100 + 20*count - depth;
+    
 % check for tie
 elseif sum(matrix(:) == 0) == 0
     result = 0;
 else
-    depth = depth + 1;
+    
     scores = zeros(1,25);
-    if symbol == CIRCLE
-        opponent = SHARP;
+    
+     % Allow only for N depth
+    if depth >=maxdepth
+        result = 0;
+        return;
+    end
+      
+    if depth == 0 % First time minimax is called, children searches minimax for Player's symbol
+        nextlevelplayer = symbol; 
+    elseif symbol == CIRCLE
+        nextlevelplayer = SHARP;
     else
-        opponent = CIRCLE;
+        nextlevelplayer = CIRCLE;
     end
     
     for i=1:5
         for j=1:5
             if matrix(i,j) == EMPTY
                 next = matrix;
-                next(i,j) = symbol;
-                scores((i-1)*5+j) = minimax(next,depth,opponent);
+                next(i,j) = nextlevelplayer;
+                scores((i-1)*5+j) = minimax(next,depth+1,nextlevelplayer,count,maxdepth);
             else
                 scores((i-1)*5+j) = NaN;
             end
         end
     end
-    
-    if symbol == PLAYER
+    % If the victory was not found, we search once again for triple
+    if min(scores) == max(scores) && depth == 0
+        for i=1:5
+            for j=1:5
+                if matrix(i,j) == EMPTY
+                    next = matrix;
+                    next(i,j) = nextlevelplayer;
+                    scores((i-1)*5+j) = canminimax(next,depth+1,nextlevelplayer,count-1,maxdepth);
+                else
+                    scores((i-1)*5+j) = NaN;
+                end
+            end
+        end
+    end
+    % If the victory was not found, we search once again for two.
+    if min(scores) == max(scores) && depth == 0
+        for i=1:5
+            for j=1:5
+                if matrix(i,j) == EMPTY
+                    next = matrix;
+                    next(i,j) = nextlevelplayer;
+                    scores((i-1)*5+j) = canminimax(next,depth+1,nextlevelplayer,count-2,maxdepth);
+                else
+                    scores((i-1)*5+j) = NaN;
+                end
+            end
+        end
+    end
+    if nextlevelplayer == PLAYER
         maxScore = max(scores);
         index = find(scores == maxScore);
         index = index(1);
@@ -51,6 +100,12 @@ else
         NEXT_MOVE = matrix;
         result = minScore;
     end
+
+   
+    if depth == 0
+         result;
+    end
+       
 end
 
 end

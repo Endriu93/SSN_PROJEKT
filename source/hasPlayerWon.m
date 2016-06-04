@@ -1,14 +1,17 @@
-function result=hasPlayerWon(matrix,symbol)
+function result=hasPlayerWon(matrix,symbol,count)
+% count - count of following symbols, that gives victory
 % function tells if player represented by current symbol won the game
 % TO REFRACTOR
 
+% search in a rows
 result = false;
 sum = 0;
 for i=1:5
+    sum = 0;
     for j=1:5
         if matrix(i,j) == symbol
             sum = sum + 1;
-            if sum == 3
+            if sum == count
                 result = true;
                 return
             end
@@ -16,13 +19,16 @@ for i=1:5
             sum = 0;
         end
     end
-    sum = 0;
 end
-for j=1:5
-    for i=1:5
-        if matrix(i,j) == symbol
+
+%search in columns
+sum = 0;
+for i=1:5
+    sum = 0;
+    for j=1:5
+        if matrix(j,i) == symbol
             sum = sum + 1;
-            if sum == 3
+            if sum == count
                 result = true;
                 return
             end
@@ -30,72 +36,110 @@ for j=1:5
             sum = 0;
         end
     end
-    sum = 0;
 end
+
+%search across left to right
+sum = 0;
 for i=1:5
-    if matrix(i,i) == symbol
-        sum = sum + 1;
-        if sum == 3
-            result = true;
-            return
+    for j=1:5
+        if i==j
+            if matrix(i,j) == symbol
+                sum = sum + 1;
+                if sum == count
+                    result = true;
+                    return
+                end
+            else
+                sum=0;
+            end
         end
-    else
-        sum = 0;
     end
 end
+
+sum = 0;
 for i=1:5
-    if matrix(i,6-i) == symbol
-        sum = sum + 1;
-        if sum == 3
-            result = true;
-            return
+    for j=1:5
+        if i+1==j
+            if matrix(i,j) == symbol
+                sum = sum + 1;
+                if sum == count
+                    result = true;
+                    return
+                end
+            else
+                sum=0;
+            end
         end
-    else
-        sum = 0;
     end
 end
-for i=1:4
-    if matrix(i,i+1) == symbol
-        sum = sum + 1;
-        if sum == 3
-            result = true;
-            return
+
+sum = 0;
+for i=1:5
+    for j=1:5
+        if i-1==j
+            if matrix(i,j) == symbol
+                sum = sum + 1;
+                if sum == count
+                    result = true;
+                    return
+                end
+            else
+                sum=0;
+            end
         end
-    else
-        sum = 0;
     end
 end
-for i=1:4
-    if matrix(i+1,i) == symbol
-        sum = sum + 1;
-        if sum == 3
-            result = true;
-            return
+
+
+%search across right to left
+sum = 0;
+for i=1:5
+    for j=1:5
+        if i+j==6
+            if matrix(i,j) == symbol
+                sum = sum + 1;
+                if sum == count
+                    result = true;
+                    return
+                end
+            else
+                sum=0;
+            end
         end
-    else
-        sum = 0;
     end
 end
-for i=1:3
-    if matrix(i,i+2) == symbol
-        sum = sum + 1;
-        if sum == 3
-            result = true;
-            return
+
+sum = 0;
+for i=1:5
+    for j=1:5
+        if i+j==5
+            if matrix(i,j) == symbol
+                sum = sum + 1;
+                if sum == count
+                    result = true;
+                    return
+                end
+            else
+                sum=0;
+            end
         end
-    else
-        sum = 0;
     end
 end
-for i=1:3
-    if matrix(i+2,i) == symbol
-        sum = sum + 1;
-        if sum == 3
-            result = true;
-            return
+
+sum = 0;
+for i=1:5
+    for j=1:5
+        if i+j==7
+            if matrix(i,j) == symbol
+                sum = sum + 1;
+                if sum == count
+                    result = true;
+                    return
+                end
+            else
+                sum=0;
+            end
         end
-    else
-        sum = 0;
     end
 end
 
