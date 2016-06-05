@@ -1,5 +1,5 @@
-clear;
-clc;
+%clear;
+%clc;
 
 % define used symbols
 global CIRCLE SHARP EMPTY
@@ -11,8 +11,11 @@ EMPTY = 0;
 % Each cell may be in one of above defined states: CIRCLE,SHAPE or EMPTY
 
 % get Test set
-% boards - set of boards we search the best movements for.
-% x - set of follo
-[boards,x,y] = GetSamplesTest(5,20);
+% boards - set of boards, for which we search the best movements.
+% x,y - set of choosen moves for following boards 
+%[boards,x,y] = GetSamplesTest(5,20);
 
-net = defineNetwork();
+%net = defineNetwork(boards,x,y,15);
+% [teachError, testError] = testNetwork(net,boards,x,y);
+
+play(net, 4, );

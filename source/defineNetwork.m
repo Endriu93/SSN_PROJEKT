@@ -1,7 +1,8 @@
-function net = defineNetwork()
+function net = defineNetwork(boards,x,y,hiddenLayerNum)
 % this function defines network
-HiddenLayerNum = 25; % number of neurons in hidden layer
-net = feedforwardnet(HiddenLayerNum);
-
+% hiddenLayerNum - number of neurons in hidden layer
+net = feedforwardnet(hiddenLayerNum);
+net = configure(net, boards', [x y]');
+net = train(net, boards', [x y]');
 end
 

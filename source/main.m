@@ -1,5 +1,5 @@
-clear;
-clc;
+%clear;
+%clc;
 
 % define used symbols
 global CIRCLE SHARP EMPTY
@@ -13,6 +13,9 @@ EMPTY = 0;
 % get Test set
 % boards - set of boards, for which we search the best movements.
 % x,y - set of choosen moves for following boards 
-[boards,x,y] = GetSamplesTest(5,20);
+%[boards,x,y] = GetSamplesTest(5,20);
 
-net = defineNetwork();
+%net = defineNetwork(boards,x,y,15);
+% [teachError, testError] = testNetwork(net,boards,x,y);
+
+play(net, 4, 0.25);
