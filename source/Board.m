@@ -22,7 +22,7 @@ function varargout = Board(varargin)
 
 % Edit the above text to modify the response to help Board
 
-% Last Modified by GUIDE v2.5 07-Jun-2016 21:55:26
+% Last Modified by GUIDE v2.5 07-Jun-2016 22:37:55
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -298,5 +298,3 @@ end
 setappdata(gcbf,'current', SHARP);
 setappdata(gcbf,'net',net);    
 setappdata(gcbf,'board',board);
-
-
