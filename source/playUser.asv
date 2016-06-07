@@ -1,0 +1,12 @@
+function [board, returnSymbol] = playUser(count, handles, board, num)
+
+global CIRCLE SHARP
+
+checkWin(board, count);
+
+x = mod(num, 5);
+y = ceil(num/5);
+board(x, y) = SHARP;
+
+set(eval(['handles.pushbutton' int2str(num)]),'String','X');
+set(handles.dispturn,'String','Computer turn (O)');
