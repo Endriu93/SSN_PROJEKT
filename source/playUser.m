@@ -6,7 +6,7 @@ checkWin(board, count);
 
 x = mod(num, 5);
 y = ceil(num/5);
-board(x, y) = SHARP;
+board(y, x) = SHARP;
 
 set(eval(['handles.pushbutton' int2str(num)]),'String','X');
 set(handles.end_status,'String','Computer turn (O)');

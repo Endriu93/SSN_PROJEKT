@@ -14,15 +14,14 @@ EMPTY = 0;
 
 maxdepth =3;
 tmp = initMatrix;
-tmpx=0;
-tmpy=0;
+tmpx=0,tmpy=0;
 
 while i<N
     if mod(i,2) == 0 
         player = CIRCLE;
         vec = zeros(1,25);
         tmpvec = matrixToVector(tmp,vec);
-        boards = [boards; tmpvec] % we adds boards only with players turn.
+        boards = [boards; tmpvec]; % we adds boards only with players turn.
     else
         player = SHARP;
     end

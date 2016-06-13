@@ -215,7 +215,7 @@ for i=1:5
                             result = true;
                         end
                     end
-                    if i-count>0
+                    if i-count>1
                         if matrix(i-count,j+count) == 0
                             result = true;
                         end
