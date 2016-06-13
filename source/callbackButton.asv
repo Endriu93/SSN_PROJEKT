@@ -8,20 +8,19 @@ net=getappdata(gcbf,'net');
 current=getappdata(gcbf,'current');
 
 % if is not empty
+x = mod(numButton, 5);
 y = ceil(numButton/5);
-if mod(numButton, 5) == 0
+if x == 0
     x = mod(numButton-1, 5) + 1;
-else
-    x = mod(numButton, 5);
 end
-
-if board(x, y) ~= 0 
+if board(mod(numButton, 5) , ceil(numButton/5)) ~= 0 
     set(handles.end_status,'String','Try again');
 % if its not user turn
 elseif current ~= SHARP
     set(handles.end_status,'String','Not your turn');
 else
     % check proper field on board
+    numButton
     board = playUser(4, handles, board, numButton);
     setappdata(gcbf,'current',CIRCLE);
     

@@ -4,7 +4,11 @@ global SHARP
 
 checkWin(board, count);
 
-x = mod(num, 5);
+if mod(num, 5) == 0
+    x = mod(num-1, 5) + 1;
+else
+    x = mod(num, 5);
+end
 y = ceil(num/5);
 board(x, y) = SHARP;
 
