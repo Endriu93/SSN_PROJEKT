@@ -14,8 +14,7 @@ EMPTY = 0;
 
 maxdepth =3;
 tmp = initMatrix;
-tmpx=0;
-tmpy=0;
+tmpx=0,tmpy=0;
 
 while i<N
     if mod(i,2) == 0 
@@ -27,16 +26,12 @@ while i<N
         player = SHARP;
     end
     i=i+1;
-    [tmp tmpx tmpy] = getbestMovement(tmp,player,4,maxdepth);
+    [tmp tmpx tmpy] = bestMovement(tmp,player,4,maxdepth);
     if player == CIRCLE
         x = [x; tmpx];
         y = [y; tmpy];
     end
     if hasPlayerWon(tmp,CIRCLE,4) || hasPlayerWon(tmp,SHARP,4)
-        return;
-    end
-    % check whether the board is full filled
-    if sum(sum(abs(tmp - 0))) == 25
         return;
     end
 end
