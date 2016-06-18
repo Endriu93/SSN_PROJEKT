@@ -1,4 +1,4 @@
-function checkWin(board, count)
+function checkWin(board, count, handles)
 
 global CIRCLE SHARP 
 

@@ -259,8 +259,8 @@ CIRCLE = -1;
 SHARP = 1;
 EMPTY = 0;
 
-load('boardsState2');
-net = defineRBFNetwork_v2(boards([1:5000],:)',x([1:5000],:)',y([1:5000],:)',0.1);
+load('bigLearningData.mat');
+net = defineRBFNetwork_v2(boards([1:13000],:)',x([1:13000],:)',y([1:13000],:)',0.1);
 %%%%%%%%%%%%%%%%%%%%%%
 
 for i=1:25

@@ -2,7 +2,7 @@ function board = playNet(net, count, handles, board)
 
 global CIRCLE EMPTY
 
-checkWin(board, count);
+checkWin(board, count, handles);
 
 vector = zeros(1,25);
 vector = matrixToVector(board,vector);

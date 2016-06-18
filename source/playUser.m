@@ -2,7 +2,7 @@ function board = playUser(count, handles, board, num)
 
 global SHARP
 
-checkWin(board, count);
+checkWin(board, count, handles);
 
 if mod(num, 5) == 0
     x = mod(num-1, 5) + 1;
