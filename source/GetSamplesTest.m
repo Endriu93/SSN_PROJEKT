@@ -11,7 +11,7 @@ i=0;
 while i<N
     disp(i);
     % get random matrix
-    matrix = randomMatrix(4);
+    matrix = randomMatrix(2);
     [t_boards,t_x,t_y] = getSamples(K,matrix);
     boards = [boards; t_boards];
     x = [x; t_x];

@@ -20,7 +20,10 @@ for i = 1:length(x)
 end
 net = cell(1,2);
 net{1} = newgrnn(boards,x5,spread);
+net{1}.layers{2}.transferFcn = 'logsig';
 net{2} = newgrnn(boards,y5,spread);
+net{2}.layers{2}.transferFcn = 'logsig';
+
 
 %net = newrbe(boards,[x; y]);
 

@@ -259,8 +259,8 @@ CIRCLE = -1;
 SHARP = 1;
 EMPTY = 0;
 
-load('boardsState2');
-net = defineRBFNetwork_v2(boards([1:5000],:)',x([1:5000],:)',y([1:5000],:)',0.1);
+% LOAD NETWORK
+load('netForPlay');
 %%%%%%%%%%%%%%%%%%%%%%
 
 for i=1:25

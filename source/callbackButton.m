@@ -7,12 +7,17 @@ board=getappdata(gcbf,'board');
 net=getappdata(gcbf,'net');
 current=getappdata(gcbf,'current');
 
+% checkWin
+if checkWin(board,4,handles) ==  true
+    return;
+end
+
 % if is not empty
-y = ceil(numButton/5);
+x = ceil(numButton/5);
 if mod(numButton, 5) == 0
-    x = mod(numButton-1, 5) + 1;
+    y = mod(numButton-1, 5) + 1;
 else
-    x = mod(numButton, 5);
+    y = mod(numButton, 5);
 end
 
 if board(x, y) ~= 0 
@@ -21,13 +26,27 @@ if board(x, y) ~= 0
 elseif current ~= SHARP
     set(handles.end_status,'String','Not your turn');
 else
-    % check proper field on board
+    % checkWin
+    if checkWin(board,4,handles) ==  true
+        return;
+    end
+    
     board = playUser(4, handles, board, numButton);
     setappdata(gcbf,'current',CIRCLE);
+    
+    % checkWin
+    if checkWin(board,4,handles) ==  true
+        return;
+    end
     
     % net turn after user turn
     board = playNet(net, 4, handles, board);
     setappdata(gcbf,'current',SHARP);
+   
+    % checkWin
+    if checkWin(board,4,handles) ==  true
+        return;
+    end
     
     % set shared data
     setappdata(gcbf,'board',board);

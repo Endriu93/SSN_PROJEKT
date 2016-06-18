@@ -3,7 +3,6 @@ function [result,i,j]=minimax(matrix,depth,symbol,count,maxdepth)
 i=nan;
 j=nan;
 % http://neverstopbuilding.com/minimax
-% working for 3x3, but need improvement for 5x5
 global CIRCLE SHARP EMPTY PLAYER OPPONENT NEXT_MOVE
 
 % first time method is called the player was assigned given symbol
@@ -81,10 +80,15 @@ else
             end
         end
     end
+    
+    if depth == 0
+        a = 3;
+    end
     if nextlevelplayer == PLAYER
         maxScore = max(scores);
         index = find(scores == maxScore);
-        index = index(1);
+        ind = randi(length(index));
+        index = index(ind);
         i = floor((index-1)/5)+1;
         j = mod(index-1,5)+1;
         matrix(i,j) = PLAYER;
@@ -93,7 +97,8 @@ else
     else
         minScore = min(scores);
         index = find(scores == minScore);
-        index = index(1);
+        ind = randi(length(index));
+        index = index(ind);
         i = floor((index-1)/5)+1;
         j = mod(index-1,5)+1;
         matrix(i,j) = OPPONENT;
