@@ -261,6 +261,7 @@ EMPTY = 0;
 
 % LOAD NETWORK
 load('netForPlay');
+
 %%%%%%%%%%%%%%%%%%%%%%
 
 for i=1:25
